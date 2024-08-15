@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commerce en ligne</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Bienvenue sur notre boutique en ligne</h1>
+
+        <!-- Page d'accueil avec les produits -->
+        <div class="row">
+            <!-- Produit 1 -->
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="C:\Users\DELL\OneDrive\Images\Site_web\Aza.jpg" alt="Perruque">
+                    <h4>Perruque</h4>
+                    <p>Description du produit 1.</p>
+                    <p>Prix : 20000FCFA</p>
+                    <button class="btn btn-primary" onclick="ajouterAuPanier('Perruque', 20000)">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Produit 2 -->
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="C:\Users\DELL\OneDrive\Images\Site_web\Lolo.jpg" alt="Affiche">
+                    <h4>Produit 2</h4>
+                    <p>Description du produit 2.</p>
+                    <p>Prix : 8000FCFA</p>
+                    <button class="btn btn-primary" onclick="ajouterAuPanier('Affiche', 8000)">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Ajouter d'autres produits ici -->
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="images/produit3.jpg" alt="Produit 3">
+                    <h4>Produit 3</h4>
+                    <p>Description du produit 3.</p>
+                    <p>Prix : 70€</p>
+                    <button class="btn btn-primary" onclick="ajouterAuPanier('Produit 3', 70)">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panier -->
+        <h2>Panier</h2>
+        <ul id="panier" class="list-group"></ul>
+        <button class="btn btn-success mt-3" onclick="confirmerCommande()">Confirmer la commande</button>
+    </div>
+
+    <script>
+        // Simuler un panier
+        let panier = [];
+
+        function ajouterAuPanier(produit, prix) {
+            panier.push({ produit, prix });
+            afficherPanier();
+        }
+
+        function afficherPanier() {
+            const panierElement = document.getElementById('panier');
+            panierElement.innerHTML = ''; // Vider le panier actuel
+            panier.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.textContent = `${item.produit} - ${item.prix}€`;
+                panierElement.appendChild(li);
+            });
+        }
+
+        function confirmerCommande() {
+            // Simuler la redirection vers WhatsApp avec les détails de la commande
+            const numeroCommercant = '22663859409'; // Remplacez par le numéro du commerçant
+            const detailsCommande = panier.map(item => `${item.produit} (${item.prix}€)`).join(', ');
+            const lienWhatsApp = `https://wa.me/${numeroCommercant}?text=Bonjour,%20je%20viens%20de%20passer%20une%20commande%20pour%20les%20articles%20suivants%20:%20${encodeURIComponent(detailsCommande)}.`;
+
+            // Redirection vers WhatsApp
+            window.location.href = lienWhatsApp;
+        }
+    </script>
+</body>
+</html>
